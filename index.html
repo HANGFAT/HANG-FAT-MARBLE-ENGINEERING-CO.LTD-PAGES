@@ -276,7 +276,7 @@ body { background: white; padding: 0; }
 <input type="file" id="aiImage" accept="image/*">
 <button class="btn-ai" onclick="analyzeImageWithAI()">📷 分析圖片並填入數據</button>
 </div>
-<div id="aiStatus" class="ai-status">提示：請選擇手寫草圖、圖紙或工程單照片，AI 將自動辨識尺寸與加工邊型。</div>
+<div id="aiStatus" class="ai-status">提示：請選擇手寫草圖、圖紙或工程單照片，AI 將自動辨識尺寸與加工項目。</div>
 </div>
 
 <div class="unit-selector">
@@ -323,22 +323,16 @@ body { background: white; padding: 0; }
 <table id="processTable">
 <thead>
 <tr>
-<th style="width: 30%;">加工項目 / 邊型</th>
-<th style="width: 20%;">磨邊長度</th>
-<th style="width: 20%;">換算直呎</th>
+<th style="width: 30%;">加工項目 / 備註</th>
+<th style="width: 20%;">加工長度</th>
+<th style="width: 20%;">換算直呎 (算頭計尾)</th>
 <th style="width: 20%;">每直呎單價 ($)</th>
 <th style="width: 10%;">操作</th>
 </tr>
 </thead>
 <tbody id="processBody">
 <tr>
-<td>
-<select class="process-type" onchange="updateProcessPrice(this)">
-<option value="25">普通邊 ($25)</option>
-<option value="35">鴨嘴邊 ($35)</option>
-<option value="45">雙層邊 ($45)</option>
-</select>
-</td>
+<td><input type="text" class="process-name" value="普通邊" oninput="calculateAll()"></td>
 <td><input type="number" class="process-len" value="782" oninput="calculateAll()"></td>
 <td class="process-ft">0 直呎</td>
 <td><input type="number" class="process-price" value="25" oninput="calculateAll()"></td>
@@ -346,7 +340,7 @@ body { background: white; padding: 0; }
 </tr>
 </tbody>
 </table>
-<button class="btn" onclick="addProcessRow()">+ 新增磨邊加工</button>
+<button class="btn" onclick="addProcessRow()">+ 新增加工項目</button>
 
 <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
 <label><strong>其他固定加工 / 開孔費總和 ($)：</strong></label>
@@ -401,7 +395,7 @@ body { background: white; padding: 0; }
 </div>
 
 <div style="margin-top:20px; font-size:12px; color:#718096; border-top:1px solid #e2e8f0; padding-top:10px;">
-<p>* 算頭計尾規則：每件石材不足1平方呎以1平方呎計算。</p>
+<p>* 算頭計尾規則：每件石材及加工長度不足1呎均以1呎計算。</p>
 <p>客戶簽署確認：___________________________</p>
 </div>
 
@@ -440,28 +434,18 @@ tbody.appendChild(tr);
 calculateAll();
 }
 
-function addProcessRow(len=0, price=25) {
+function addProcessRow(name="加工項目", len=0, price=25) {
 const tbody = document.getElementById('processBody');
+const count = tbody.children.length + 1;
 const tr = document.createElement('tr');
 tr.innerHTML = `
-<td>
-<select class="process-type" onchange="updateProcessPrice(this)">
-<option value="25" ${price==25?'selected':''}>普通邊 ($25)</option>
-<option value="35" ${price==35?'selected':''}>鴨嘴邊 ($35)</option>
-<option value="45" ${price==45?'selected':''}>雙層邊 ($45)</option>
-</select>
-</td>
+<td><input type="text" class="process-name" value="${name === '加工項目' ? '加工 ' + count : name}" oninput="calculateAll()"></td>
 <td><input type="number" class="process-len" value="${len}" oninput="calculateAll()"></td>
 <td class="process-ft">0 直呎</td>
 <td><input type="number" class="process-price" value="${price}" oninput="calculateAll()"></td>
 <td><button class="btn btn-danger" onclick="removeRow(this)">刪除</button></td>
 `;
 tbody.appendChild(tr);
-calculateAll();
-}
-
-function updateProcessPrice(selectElem) {
-selectElem.closest('tr').querySelector('.process-price').value = selectElem.value;
 calculateAll();
 }
 
@@ -494,10 +478,15 @@ let totalProcessCost = 0;
 document.querySelectorAll('#processBody tr').forEach(row => {
 const len = parseFloat(row.querySelector('.process-len').value) || 0;
 const price = parseFloat(row.querySelector('.process-price').value) || 0;
-let linealFeet = (unit === 'mm') ? len / 304.8 : len / 12;
 
-totalProcessCost += linealFeet * price;
-row.querySelector('.process-ft').innerText = `${linealFeet.toFixed(2)} 直呎`;
+// 計算實際直呎
+let rawLinealFeet = (unit === 'mm') ? len / 304.8 : len / 12;
+
+// 算頭計尾（無條件進位，不足1呎當1呎）
+let roundedLinealFeet = (len === 0) ? 0 : Math.max(1, Math.ceil(rawLinealFeet));
+
+totalProcessCost += roundedLinealFeet * price;
+row.querySelector('.process-ft').innerText = `${rawLinealFeet.toFixed(2)} 呎 $\rightarrow$ ${roundedLinealFeet} 直呎`;
 });
 
 const otherProcessCost = parseFloat(document.getElementById('otherProcessCost').value) || 0;
@@ -536,7 +525,7 @@ const prompt = `請分析這張雲石工程單/草圖，提取所有石材尺寸
 {
 "unit": "mm",
 "items": [
-{"name": "台面1", "length": 782, "width": 44, "qty": 1, "edgeLength": 782, "edgePrice": 25}
+{"name": "台面1", "length": 782, "width": 44, "qty": 1, "edgeName": "普通邊", "edgeLength": 782, "edgePrice": 25}
 ]
 }
 如果無法確定單位，預設 unit 為 "mm"。edgePrice 預設為 25。`;
@@ -568,7 +557,7 @@ if (result.unit) document.getElementById('globalUnit').value = result.unit;
 result.items.forEach(item => {
 addStoneRow(item.name || '石材', item.length || 0, item.width || 0, item.qty || 1);
 if (item.edgeLength > 0) {
-addProcessRow(item.edgeLength, item.edgePrice || 25);
+addProcessRow(item.edgeName || '磨邊加工', item.edgeLength, item.edgePrice || 25);
 }
 });
 
@@ -610,12 +599,12 @@ html += `<tr><td>${name}</td><td>${l} x ${w} ${unit}</td><td>${qty}</td><td>${sq
 });
 html += '</table>';
 
-html += '<h4 style="margin:15px 0 5px 0;">2. 加工費細項：</h4><table class="invoice-table"><tr><th>邊型</th><th>長度</th><th>換算直呎</th></tr>';
+html += '<h4 style="margin:15px 0 5px 0;">2. 加工費細項：</h4><table class="invoice-table"><tr><th>加工項目</th><th>長度</th><th>換算計價直呎</th></tr>';
 document.querySelectorAll('#processBody tr').forEach(row => {
-const type = row.querySelector('.process-type').options[row.querySelector('.process-type').selectedIndex].text;
+const name = row.querySelector('.process-name').value || '加工';
 const len = row.querySelector('.process-len').value;
-const ft = row.querySelector('.process-ft').innerText;
-html += `<tr><td>${type}</td><td>${len} ${unit}</td><td>${ft}</td></tr>`;
+const ft = row.querySelector('.process-ft').innerText.split('→')[1] || '0 直呎';
+html += `<tr><td>${name}</td><td>${len} ${unit}</td><td>${ft}</td></tr>`;
 });
 html += '</table>';
 
