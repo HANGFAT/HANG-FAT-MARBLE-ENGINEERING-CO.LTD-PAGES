@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>恒發雲石公司 - 快捷報價計算系統</title>
+<title>恆發雲石工程有限公司 - 快速報價計算系統 (AI加強版)</title>
 <style>
 :root {
 --primary-color: #1a365d;
@@ -28,7 +28,7 @@ margin: 0 auto;
 background: var(--card-bg);
 padding: 20px;
 border-radius: 12px;
-box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 
 header {
@@ -41,151 +41,219 @@ margin-bottom: 20px;
 header h1 {
 color: var(--primary-color);
 margin: 0;
-font-size: 26px;
+font-size: 28px;
 letter-spacing: 1px;
 }
 
-header p {
-color: #718096;
-margin: 5px 0 0 0;
+.company-info {
+font-size: 13px;
+color: #4a5568;
+margin-top: 8px;
+line-height: 1.6;
+}
+
+.company-info span {
+margin: 0 8px;
+color: #cbd5e0;
+}
+
+/* AI 助手區塊 */
+.ai-card {
+background: linear-gradient(135deg, #ebf8ff 0%, #e6fffa 100%);
+border: 2px dashed #319795;
+padding: 18px;
+border-radius: 10px;
+margin-bottom: 20px;
+}
+
+.ai-card h3 {
+margin: 0 0 10px 0;
+color: #2c7a7b;
+display: flex;
+align-items: center;
+gap: 8px;
+font-size: 16px;
+}
+
+.ai-input-group {
+display: flex;
+flex-wrap: wrap;
+gap: 10px;
+margin-bottom: 10px;
+}
+
+.ai-input-group input[type="password"],
+.ai-input-group input[type="file"] {
+padding: 8px;
+border: 1px solid #cbd5e0;
+border-radius: 6px;
+background: white;
 font-size: 13px;
 }
 
-.unit-bar {
-background: #edf2f7;
-padding: 10px 15px;
-border-radius: 8px;
-margin-bottom: 20px;
-display: flex;
-align-items: center;
-gap: 10px;
+.btn-ai {
+background-color: #319795;
+color: white;
+border: none;
+padding: 8px 16px;
+border-radius: 6px;
+cursor: pointer;
 font-weight: bold;
 font-size: 14px;
 }
 
-.unit-bar select {
-padding: 6px 10px;
-border-radius: 6px;
-border: 1px solid #cbd5e0;
-font-size: 14px;
-background: white;
+.btn-ai:hover { background-color: #2c7a7b; }
+
+.ai-status {
+font-size: 13px;
+color: #4a5568;
+margin-top: 5px;
+font-weight: 500;
 }
 
-section {
-background: #fff;
-border: 1px solid var(--border-color);
-border-radius: 8px;
-padding: 15px;
-margin-bottom: 20px;
-}
-
-h2 {
+.section-title {
 font-size: 16px;
+font-weight: bold;
 color: var(--primary-color);
-margin-top: 0;
-margin-bottom: 12px;
+background: #ebf8ff;
+padding: 8px 12px;
+border-left: 4px solid var(--accent-color);
+margin: 20px 0 10px 0;
+border-radius: 0 4px 4px 0;
+}
+
+.unit-selector {
+background: #fffaf0;
+border: 1px solid #feebc8;
+padding: 10px 15px;
+border-radius: 8px;
+margin-bottom: 15px;
 display: flex;
 align-items: center;
-gap: 8px;
+gap: 15px;
 }
 
 table {
 width: 100%;
 border-collapse: collapse;
-margin-top: 8px;
+margin-bottom: 10px;
+font-size: 14px;
 }
 
 th, td {
 border: 1px solid var(--border-color);
 padding: 8px;
 text-align: center;
-font-size: 14px;
 }
 
-th {
-background: #f7fafc;
-color: #4a5568;
-font-weight: 600;
-}
+th { background-color: #f7fafc; color: #4a5568; font-weight: 600; }
 
-input[type="text"], input[type="number"], select {
+input, select {
 width: 90%;
 padding: 6px;
 border: 1px solid #cbd5e0;
 border-radius: 4px;
 text-align: center;
 font-size: 14px;
-box-sizing: border-box;
 }
 
 .btn {
-cursor: pointer;
+background-color: #38a169;
+color: white;
 border: none;
-border-radius: 6px;
-font-weight: bold;
 padding: 8px 16px;
-transition: all 0.2s;
+border-radius: 6px;
+cursor: pointer;
+font-weight: bold;
+margin-top: 5px;
 }
 
-.btn-add {
-background: #38a169;
-color: white;
-margin-top: 10px;
-font-size: 13px;
+.btn:hover { background-color: #2f855a; }
+
+.btn-confirm {
+background-color: #dd6b20;
+font-size: 18px;
+padding: 12px 24px;
+width: 100%;
+margin-top: 20px;
 }
 
-.btn-add:hover { background: #2f855a; }
-
-.btn-del {
-background: #e53e3e;
-color: white;
+.btn-danger {
+background-color: #e53e3e;
 padding: 4px 8px;
 font-size: 12px;
 }
 
-.btn-del:hover { background: #c53030; }
-
-.summary-box {
-background: var(--primary-color);
+.summary-card {
+background: #2d3748;
 color: white;
 padding: 20px;
 border-radius: 10px;
-margin-top: 20px;
+margin-top: 25px;
 }
 
 .summary-row {
 display: flex;
 justify-content: space-between;
-margin-bottom: 10px;
+padding: 6px 0;
+border-bottom: 1px solid #4a5568;
 font-size: 15px;
 }
 
-.total-row {
+.summary-total {
+display: flex;
+justify-content: space-between;
 font-size: 24px;
+font-weight: bold;
 color: #f6ad55;
-font-weight: bold;
-border-top: 1px solid rgba(255, 255, 255, 0.2);
 padding-top: 12px;
-margin-top: 10px;
+margin-top: 6px;
+border-top: 2px solid #718096;
 }
 
-.billed-txt {
-color: var(--highlight-color);
-font-weight: bold;
-font-size: 15px;
+.modal {
+display: none;
+position: fixed;
+top: 0; left: 0; width: 100%; height: 100%;
+background: rgba(0,0,0,0.6);
+justify-content: center;
+align-items: center;
+z-index: 1000;
 }
 
-.note {
-font-size: 12px;
-color: #a0aec0;
+.modal-content {
+background: white;
+padding: 30px;
+border-radius: 12px;
+max-width: 650px;
+width: 90%;
+max-height: 85vh;
+overflow-y: auto;
+}
+
+.invoice-header {
+text-align: center;
+border-bottom: 2px solid #1a365d;
+padding-bottom: 12px;
+margin-bottom: 15px;
+}
+
+.invoice-table { width: 100%; margin-top: 15px; font-size: 13px; }
+.invoice-table th, .invoice-table td { border: 1px solid #e2e8f0; padding: 6px; text-align: left; }
+
+.invoice-total-box {
+background: #edf2f7;
+padding: 15px;
+border-radius: 8px;
+margin-top: 15px;
+text-align: right;
+font-size: 16px;
 }
 
 @media print {
-.btn, .unit-bar, .btn-add, .btn-del { display: none; }
-body { padding: 0; background: white; }
-.container { box-shadow: none; border: none; width: 100%; max-width: 100%; }
-.summary-box { background: #f7fafc; color: #000; border: 2px solid #000; }
-.total-row { color: #000; }
+body { background: white; padding: 0; }
+.container, .modal-content { box-shadow: none; width: 100%; max-width: 100%; }
+.btn, .unit-selector, .btn-danger, .modal, .ai-card { display: none !important; }
 }
 </style>
 </head>
@@ -193,216 +261,375 @@ body { padding: 0; background: white; }
 
 <div class="container">
 <header>
-<h1>恒發雲石公司</h1>
-<p>快捷報價計算系統 (實體計數機規則：進位取整數呎)</p>
+<h1>恆發雲石工程有限公司</h1>
+<div class="company-info">
+📞 電話：(852) 22530490 <span>|</span> 📱 手提/WhatsApp：(852) 93109093 <span>|</span> 📠 傳真：(852) 24752620<br>
+📧 電郵：HFLTD@YAHOO.COM.HK <span>|</span> 📍 地址：新界元朗合益路69號金堂樓地下
+</div>
 </header>
 
-<div class="unit-bar">
-<span>尺寸輸入單位：</span>
-<select id="inputUnit" onchange="calculateAll()">
-<option value="cm" selected>厘米 (cm)</option>
+<!-- AI 識別區塊 -->
+<div class="ai-card">
+<h3>🤖 AI 智能草圖/單據識別</h3>
+<div class="ai-input-group">
+<input type="password" id="apiKey" placeholder="貼上 Gemini API Key" style="width:200px;" onchange="saveApiKey()">
+<input type="file" id="aiImage" accept="image/*">
+<button class="btn-ai" onclick="analyzeImageWithAI()">📷 分析圖片並填入數據</button>
+</div>
+<div id="aiStatus" class="ai-status">提示：請選擇手寫草圖、圖紙或工程單照片，AI 將自動辨識尺寸與加工邊型。</div>
+</div>
+
+<div class="unit-selector">
+<label for="globalUnit">尺寸輸入單位：</label>
+<select id="globalUnit" onchange="calculateAll()">
 <option value="mm">毫米 (mm)</option>
-<option value="m">米 (m)</option>
+<option value="inch">吋 (inch)</option>
 </select>
 </div>
 
 <!-- 1. 石材面積計算 -->
-<section>
-<h2>1. 石材面積與金額計算</h2>
+<div class="section-title">1. 石材面積與金額計算</div>
 <table id="stoneTable">
 <thead>
 <tr>
-<th style="width: 22%;">位置 / 石材名稱</th>
+<th style="width: 25%;">位置 / 石材名稱</th>
 <th style="width: 15%;">長度</th>
 <th style="width: 15%;">寬度</th>
-<th style="width: 10%;">數量</th>
-<th style="width: 28%;">實算呎數 → 報價呎數</th>
+<th style="width: 12%;">數量</th>
+<th style="width: 23%;">實算呎數 $\rightarrow$ 每件計呎數</th>
 <th style="width: 10%;">操作</th>
 </tr>
 </thead>
-<tbody id="stoneBody"></tbody>
+<tbody id="stoneBody">
+<tr>
+<td><input type="text" class="stone-name" value="石材 1" oninput="calculateAll()"></td>
+<td><input type="number" class="stone-l" value="782" oninput="calculateAll()"></td>
+<td><input type="number" class="stone-w" value="44" oninput="calculateAll()"></td>
+<td><input type="number" class="stone-qty" value="1" oninput="calculateAll()"></td>
+<td class="stone-result">0 呎 $\rightarrow$ 0 呎</td>
+<td><button class="btn btn-danger" onclick="removeRow(this)">刪除</button></td>
+</tr>
+</tbody>
 </table>
-<button class="btn btn-add" onclick="addStoneRow()">+ 新增雲石件數</button>
+<button class="btn" onclick="addStoneRow()">+ 新增石材件數</button>
 
 <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
 <label><strong>石材每平方呎單價 ($)：</strong></label>
-<input type="number" id="stoneUnitPrice" value="0" min="0" style="width: 120px; font-size: 16px; font-weight: bold;" oninput="calculateAll()">
+<input type="number" id="unitPrice" value="125" style="width: 120px;" oninput="calculateAll()">
 </div>
-</section>
 
 <!-- 2. 加工費計算 -->
-<section>
-<h2>2. 加工費計算 (磨邊 / 開孔)</h2>
-<table id="craftTable">
+<div class="section-title">2. 加工費計算 (磨邊 / 開孔)</div>
+<table id="processTable">
 <thead>
 <tr>
-<th style="width: 25%;">加工項目 / 邊型</th>
-<th style="width: 20%;">磨邊長度 (依輸入單位)</th>
-<th style="width: 18%;">換算直呎 (×3.28)</th>
-<th style="width: 22%;">每直呎單價 ($)</th>
-<th style="width: 15%;">操作</th>
+<th style="width: 30%;">加工項目 / 邊型</th>
+<th style="width: 20%;">磨邊長度</th>
+<th style="width: 20%;">換算直呎</th>
+<th style="width: 20%;">每直呎單價 ($)</th>
+<th style="width: 10%;">操作</th>
 </tr>
 </thead>
-<tbody id="craftBody"></tbody>
+<tbody id="processBody">
+<tr>
+<td>
+<select class="process-type" onchange="updateProcessPrice(this)">
+<option value="25">普通邊 ($25)</option>
+<option value="35">鴨嘴邊 ($35)</option>
+<option value="45">雙層邊 ($45)</option>
+</select>
+</td>
+<td><input type="number" class="process-len" value="782" oninput="calculateAll()"></td>
+<td class="process-ft">0 直呎</td>
+<td><input type="number" class="process-price" value="25" oninput="calculateAll()"></td>
+<td><button class="btn btn-danger" onclick="removeRow(this)">刪除</button></td>
+</tr>
+</tbody>
 </table>
-<button class="btn btn-add" onclick="addCraftRow()">+ 新增磨邊加工</button>
+<button class="btn" onclick="addProcessRow()">+ 新增磨邊加工</button>
 
 <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
-<label><strong>其他固定加工/開孔費總和 ($)：</strong></label>
-<input type="number" id="extraCraftFee" value="0" min="0" style="width: 120px; font-size: 15px;" oninput="calculateAll()">
+<label><strong>其他固定加工 / 開孔費總和 ($)：</strong></label>
+<input type="number" id="otherProcessCost" value="0" style="width: 120px;" oninput="calculateAll()">
 </div>
-</section>
 
-<!-- 3. 報價總計 -->
-<div class="summary-box">
+<!-- 3. 即時總結 -->
+<div class="summary-card">
 <div class="summary-row">
 <span>石材總計呎數：</span>
-<span id="totalSqftDisplay">0 呎</span>
+<span id="totalSqft">0 呎</span>
 </div>
 <div class="summary-row">
 <span>石材總金額：</span>
-<span id="stoneTotalDisplay">$0</span>
+<span id="totalStoneCost">$0</span>
 </div>
 <div class="summary-row">
 <span>加工總費用：</span>
-<span id="craftTotalDisplay">$0</span>
+<span id="totalProcessCost">$0</span>
 </div>
-<div class="summary-row total-row">
+<div class="summary-total">
 <span>報價總金額：</span>
-<span id="grandTotalDisplay">$0</span>
+<span id="grandTotal">$0</span>
+</div>
+</div>
+
+<!-- 確認按鈕 -->
+<button class="btn btn-confirm" onclick="generateInvoice()">✅ 確認並產生正式報價單</button>
+</div>
+
+<!-- 報價單 Modal -->
+<div id="invoiceModal" class="modal">
+<div class="modal-content">
+<div class="invoice-header">
+<h2 style="margin:0; color:#1a365d;">恆發雲石工程有限公司</h2>
+<div style="font-size:12px; color:#4a5568; margin-top:6px; line-height:1.5;">
+地址：新界元朗合益路69號金堂樓地下<br>
+電話：(852) 22530490 | 手提：(852) 93109093 | 傳真：(852) 24752620<br>
+電郵：HFLTD@YAHOO.COM.HK
+</div>
+<p style="margin:10px 0 2px 0; font-size:16px; font-weight:bold; color:#2b6cb0;">正式工程報價單 (Quotation)</p>
+<p style="margin:0; font-size:12px; color:#718096;" id="invoiceDate"></p>
+</div>
+
+<div id="invoiceDetails"></div>
+
+<div class="invoice-total-box">
+<div>石材總金額：<span id="invStoneCost"></span></div>
+<div>加工總金額：<span id="invProcessCost"></span></div>
+<hr style="border:none; border-top:1px solid #cbd5e0; margin:8px 0;">
+<div>報價總金額：<strong id="invGrandTotal" style="color:#c53030; font-size:22px;"></strong></div>
+</div>
+
+<div style="margin-top:20px; font-size:12px; color:#718096; border-top:1px solid #e2e8f0; padding-top:10px;">
+<p>* 算頭計尾規則：每件石材不足1平方呎以1平方呎計算。</p>
+<p>客戶簽署確認：___________________________</p>
+</div>
+
+<div style="display:flex; gap:10px; margin-top:20px;">
+<button class="btn" onclick="window.print()" style="flex:1; background:#2b6cb0;">🖨️ 列印 / 儲存為 PDF</button>
+<button class="btn" onclick="closeInvoice()" style="flex:1; background:#718096;">返回修改</button>
 </div>
 </div>
 </div>
 
 <script>
-const edgeTypes = [
-{ name: "普通邊", price: 25 },
-{ name: "小圓邊", price: 30 },
-{ name: "奇子邊", price: 50 },
-{ name: "法國邊", price: 60 },
-{ name: "格角", price: 40 },
-{ name: "前擋", price: 35 },
-{ name: "自訂邊型/手動輸入", price: 0 }
-];
+window.onload = function() {
+const savedKey = localStorage.getItem('gemini_api_key');
+if(savedKey) document.getElementById('apiKey').value = savedKey;
+calculateAll();
+};
 
-function addStoneRow() {
+function saveApiKey() {
+const key = document.getElementById('apiKey').value.trim();
+localStorage.setItem('gemini_api_key', key);
+}
+
+function addStoneRow(name="石材", l=0, w=0, qty=1) {
 const tbody = document.getElementById('stoneBody');
+const count = tbody.children.length + 1;
 const tr = document.createElement('tr');
 tr.innerHTML = `
-<td><input type="text" placeholder="例: 廚檯面 1" class="stone-name"></td>
-<td><input type="number" value="0" min="0" class="stone-len" oninput="calculateAll()"></td>
-<td><input type="number" value="0" min="0" class="stone-wid" oninput="calculateAll()"></td>
-<td><input type="number" value="1" min="1" class="stone-qty" oninput="calculateAll()"></td>
-<td><span class="raw-sqft" style="color: #a0aec0; font-size: 12px;">0</span> 呎 → <span class="billed-txt"><span class="billed-sqft">0</span> 呎</span></td>
-<td><button class="btn btn-del" onclick="removeRow(this)">刪除</button></td>
+<td><input type="text" class="stone-name" value="${name === '石材' ? '石材 ' + count : name}" oninput="calculateAll()"></td>
+<td><input type="number" class="stone-l" value="${l}" oninput="calculateAll()"></td>
+<td><input type="number" class="stone-w" value="${w}" oninput="calculateAll()"></td>
+<td><input type="number" class="stone-qty" value="${qty}" oninput="calculateAll()"></td>
+<td class="stone-result">0 呎 $\rightarrow$ 0 呎</td>
+<td><button class="btn btn-danger" onclick="removeRow(this)">刪除</button></td>
 `;
 tbody.appendChild(tr);
 calculateAll();
 }
 
-function addCraftRow() {
-const tbody = document.getElementById('craftBody');
+function addProcessRow(len=0, price=25) {
+const tbody = document.getElementById('processBody');
 const tr = document.createElement('tr');
-
-let optionsHtml = edgeTypes.map(e => `<option value="${e.price}" data-name="${e.name}">${e.name} ${e.price > 0 ? '($' + e.price + ')' : ''}</option>`).join('');
-
 tr.innerHTML = `
 <td>
-<select class="craft-type-select" onchange="onEdgeTypeChange(this)">
-${optionsHtml}
+<select class="process-type" onchange="updateProcessPrice(this)">
+<option value="25" ${price==25?'selected':''}>普通邊 ($25)</option>
+<option value="35" ${price==35?'selected':''}>鴨嘴邊 ($35)</option>
+<option value="45" ${price==45?'selected':''}>雙層邊 ($45)</option>
 </select>
-<input type="text" class="custom-craft-name" placeholder="請輸入加工名稱" style="display:none; margin-top:4px;">
 </td>
-<td><input type="number" value="0" min="0" class="craft-len" oninput="calculateAll()"></td>
-<td><span class="craft-ft">0</span> 呎</td>
-<td><input type="number" value="25" min="0" class="craft-price" oninput="calculateAll()"></td>
-<td><button class="btn btn-del" onclick="removeRow(this)">刪除</button></td>
+<td><input type="number" class="process-len" value="${len}" oninput="calculateAll()"></td>
+<td class="process-ft">0 直呎</td>
+<td><input type="number" class="process-price" value="${price}" oninput="calculateAll()"></td>
+<td><button class="btn btn-danger" onclick="removeRow(this)">刪除</button></td>
 `;
 tbody.appendChild(tr);
 calculateAll();
 }
 
-function onEdgeTypeChange(selectElem) {
-const row = selectElem.parentNode.parentNode;
-const selectedPrice = parseFloat(selectElem.value);
-const customInput = row.querySelector('.custom-craft-name');
-const priceInput = row.querySelector('.craft-price');
-
-const selectedOption = selectElem.options[selectElem.selectedIndex];
-const selectedName = selectedOption.getAttribute('data-name');
-
-if (selectedName === "自訂邊型/手動輸入") {
-customInput.style.display = "block";
-} else {
-customInput.style.display = "none";
-priceInput.value = selectedPrice;
-}
+function updateProcessPrice(selectElem) {
+selectElem.closest('tr').querySelector('.process-price').value = selectElem.value;
 calculateAll();
 }
 
 function removeRow(btn) {
-const row = btn.parentNode.parentNode;
-row.parentNode.removeChild(row);
+btn.closest('tr').remove();
 calculateAll();
 }
 
 function calculateAll() {
-const unit = document.getElementById('inputUnit').value;
+const unit = document.getElementById('globalUnit').value;
+const unitPrice = parseFloat(document.getElementById('unitPrice').value) || 0;
+let grandTotalSqft = 0;
 
-let toMeter = 0.01;
-if (unit === 'mm') toMeter = 0.001;
-if (unit === 'm') toMeter = 1.0;
+document.querySelectorAll('#stoneBody tr').forEach(row => {
+const l = parseFloat(row.querySelector('.stone-l').value) || 0;
+const w = parseFloat(row.querySelector('.stone-w').value) || 0;
+const qty = parseInt(row.querySelector('.stone-qty').value) || 0;
 
-const stoneRows = document.querySelectorAll('#stoneBody tr');
-let totalBilledSqft = 0;
+let rawSqft = (unit === 'mm') ? (l * w) / 92903.04 : (l * w) / 144;
+let roundedPerPiece = (l === 0 || w === 0) ? 0 : Math.max(1, Math.ceil(rawSqft));
+let totalRowSqft = roundedPerPiece * qty;
+grandTotalSqft += totalRowSqft;
 
-stoneRows.forEach(row => {
-const len = parseFloat(row.querySelector('.stone-len').value) || 0;
-const wid = parseFloat(row.querySelector('.stone-wid').value) || 0;
-const qty = parseFloat(row.querySelector('.stone-qty').value) || 1;
-
-const rawSqftPerPiece = (len * toMeter) * (wid * toMeter) * 10.764;
-const billedSqftPerPiece = Math.ceil(rawSqftPerPiece);
-const totalItemSqft = billedSqftPerPiece * qty;
-
-row.querySelector('.raw-sqft').innerText = (rawSqftPerPiece * qty).toFixed(2);
-row.querySelector('.billed-sqft').innerText = totalItemSqft;
-
-totalBilledSqft += totalItemSqft;
+row.querySelector('.stone-result').innerText = `${rawSqft.toFixed(2)} 呎 $\rightarrow$ ${totalRowSqft} 呎`;
 });
 
-const stoneUnitPrice = parseFloat(document.getElementById('stoneUnitPrice').value) || 0;
-const stoneTotalMoney = totalBilledSqft * stoneUnitPrice;
+const totalStoneCost = grandTotalSqft * unitPrice;
+let totalProcessCost = 0;
 
-const craftRows = document.querySelectorAll('#craftBody tr');
-let totalCraftMoney = 0;
+document.querySelectorAll('#processBody tr').forEach(row => {
+const len = parseFloat(row.querySelector('.process-len').value) || 0;
+const price = parseFloat(row.querySelector('.process-price').value) || 0;
+let linealFeet = (unit === 'mm') ? len / 304.8 : len / 12;
 
-craftRows.forEach(row => {
-const craftLen = parseFloat(row.querySelector('.craft-len').value) || 0;
-const craftPrice = parseFloat(row.querySelector('.craft-price').value) || 0;
-
-const linearFeet = (craftLen * toMeter) * 3.28;
-const craftItemTotal = linearFeet * craftPrice;
-
-row.querySelector('.craft-ft').innerText = linearFeet.toFixed(2);
-totalCraftMoney += craftItemTotal;
+totalProcessCost += linealFeet * price;
+row.querySelector('.process-ft').innerText = `${linealFeet.toFixed(2)} 直呎`;
 });
 
-const extraCraftFee = parseFloat(document.getElementById('extraCraftFee').value) || 0;
-totalCraftMoney += extraCraftFee;
+const otherProcessCost = parseFloat(document.getElementById('otherProcessCost').value) || 0;
+totalProcessCost += otherProcessCost;
 
-const grandTotal = stoneTotalMoney + totalCraftMoney;
+document.getElementById('totalSqft').innerText = `${grandTotalSqft} 呎`;
+document.getElementById('totalStoneCost').innerText = `$${totalStoneCost.toLocaleString('en-US', {maximumFractionDigits: 2})}`;
+document.getElementById('totalProcessCost').innerText = `$${totalProcessCost.toLocaleString('en-US', {maximumFractionDigits: 2})}`;
 
-document.getElementById('totalSqftDisplay').innerText = totalBilledSqft + " 呎";
-document.getElementById('stoneTotalDisplay').innerText = "$" + Math.round(stoneTotalMoney).toLocaleString('en-US');
-document.getElementById('craftTotalDisplay').innerText = "$" + Math.round(craftTotalMoney).toLocaleString('en-US');
-document.getElementById('grandTotalDisplay').innerText = "$" + Math.round(grandTotal).toLocaleString('en-US');
+const grandTotal = totalStoneCost + totalProcessCost;
+document.getElementById('grandTotal').innerText = `$${grandTotal.toLocaleString('en-US', {maximumFractionDigits: 2})}`;
 }
 
-window.onload = function() {
-addStoneRow();
-addCraftRow();
-};
+async function analyzeImageWithAI() {
+const apiKey = document.getElementById('apiKey').value.trim();
+const fileInput = document.getElementById('aiImage');
+const statusDiv = document.getElementById('aiStatus');
+
+if (!apiKey) {
+alert('請先輸入 Gemini API Key！');
+return;
+}
+if (fileInput.files.length === 0) {
+alert('請選擇圖片檔案！');
+return;
+}
+
+statusDiv.innerText = '⏳ AI 正在辨識圖片中的尺寸數據，請稍候...';
+statusDiv.style.color = '#d69e2e';
+
+try {
+const file = fileInput.files[0];
+const base64Image = await convertFileToBase64(file);
+
+const prompt = `請分析這張雲石工程單/草圖，提取所有石材尺寸與磨邊長度。請只輸出一個 JSON 格式，不要包含任何其他文字或 markdown 標籤：
+{
+"unit": "mm",
+"items": [
+{"name": "台面1", "length": 782, "width": 44, "qty": 1, "edgeLength": 782, "edgePrice": 25}
+]
+}
+如果無法確定單位，預設 unit 為 "mm"。edgePrice 預設為 25。`;
+
+const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify({
+contents: [{
+parts: [
+{ text: prompt },
+{ inlineData: { mimeType: file.type, data: base64Image } }
+]
+}]
+})
+});
+
+const data = await response.json();
+const textResponse = data.candidates[0].content.parts[0].text;
+
+const cleanJsonText = textResponse.replace(/```json/g, '').replace(/```/g, '').trim();
+const result = JSON.parse(cleanJsonText);
+
+document.getElementById('stoneBody').innerHTML = '';
+document.getElementById('processBody').innerHTML = '';
+
+if (result.unit) document.getElementById('globalUnit').value = result.unit;
+
+result.items.forEach(item => {
+addStoneRow(item.name || '石材', item.length || 0, item.width || 0, item.qty || 1);
+if (item.edgeLength > 0) {
+addProcessRow(item.edgeLength, item.edgePrice || 25);
+}
+});
+
+statusDiv.innerText = '✅ AI 辨識完成！數據已自動填入下方表格。';
+statusDiv.style.color = '#38a169';
+calculateAll();
+
+} catch (err) {
+console.error(err);
+statusDiv.innerText = '❌ 辨識失敗：請檢查 API Key 是否正確，或嘗試上傳清晰的相片。';
+statusDiv.style.color = '#e53e3e';
+}
+}
+
+function convertFileToBase64(file) {
+return new Promise((resolve, reject) => {
+const reader = new FileReader();
+reader.onload = () => resolve(reader.result.split(',')[1]);
+reader.onerror = error => reject(error);
+reader.readAsDataURL(file);
+});
+}
+
+function generateInvoice() {
+calculateAll();
+const now = new Date();
+document.getElementById('invoiceDate').innerText = `日期：${now.getFullYear()}年${now.getMonth()+1}月${now.getDate()}日`;
+
+let html = '<h4 style="margin:10px 0 5px 0;">1. 石材細項：</h4><table class="invoice-table"><tr><th>項目</th><th>尺寸</th><th>數量</th><th>計呎數</th></tr>';
+const unit = document.getElementById('globalUnit').value;
+
+document.querySelectorAll('#stoneBody tr').forEach(row => {
+const name = row.querySelector('.stone-name').value || '石材';
+const l = row.querySelector('.stone-l').value;
+const w = row.querySelector('.stone-w').value;
+const qty = row.querySelector('.stone-qty').value;
+const sqft = row.querySelector('.stone-result').innerText.split('→')[1] || '0 呎';
+html += `<tr><td>${name}</td><td>${l} x ${w} ${unit}</td><td>${qty}</td><td>${sqft}</td></tr>`;
+});
+html += '</table>';
+
+html += '<h4 style="margin:15px 0 5px 0;">2. 加工費細項：</h4><table class="invoice-table"><tr><th>邊型</th><th>長度</th><th>換算直呎</th></tr>';
+document.querySelectorAll('#processBody tr').forEach(row => {
+const type = row.querySelector('.process-type').options[row.querySelector('.process-type').selectedIndex].text;
+const len = row.querySelector('.process-len').value;
+const ft = row.querySelector('.process-ft').innerText;
+html += `<tr><td>${type}</td><td>${len} ${unit}</td><td>${ft}</td></tr>`;
+});
+html += '</table>';
+
+document.getElementById('invoiceDetails').innerHTML = html;
+document.getElementById('invStoneCost').innerText = document.getElementById('totalStoneCost').innerText;
+document.getElementById('invProcessCost').innerText = document.getElementById('totalProcessCost').innerText;
+document.getElementById('invGrandTotal').innerText = document.getElementById('grandTotal').innerText;
+
+document.getElementById('invoiceModal').style.display = 'flex';
+}
+
+function closeInvoice() {
+document.getElementById('invoiceModal').style.display = 'none';
+}
 </script>
 
 </body>
